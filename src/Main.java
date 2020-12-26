@@ -7,6 +7,7 @@ public class Main {
         taskTwo();
     }
     static void taskOne (){
+        Scanner sc = new Scanner(System.in);
         int ans = (int) (Math.random()*10);
         boolean end;
         System.out.println("Попробуйте угадать число от 0 до 9");
@@ -14,11 +15,12 @@ public class Main {
             end = check(i, ans);
             if (end) break;
         }
-
+        System.out.println("Повторить игру еще раз? 1 – да / 0 – нет");
+        int repeat = sc.nextInt();
+        if (repeat==1) taskOne();
     }
     static boolean check (int i, int ans){
         Scanner sc = new Scanner(System.in);
-        sc.close();
         int a = sc.nextInt();
         if (a==ans){
             System.out.println("Вы угадали!");

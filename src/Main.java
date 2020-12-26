@@ -6,12 +6,12 @@ public class Main {
         taskOne();
     }
     static void taskOne (){
-        int ans = (int) (Math.random()*10);
+        int ans = (int) (Math.random()*9);
         boolean end;
-        for (int i=3; i>0; i--) {
+        System.out.println("Попробуйте угадать число от 0 до 9");
+        for (int i=2; i>=0; i--) {
             end = check(i, ans);
             if (end) break;
-            //          if (end==false || i==1) System.out.println("Вы проиграли. Загаданное число " + ans + " .");
         }
 
     }
@@ -23,10 +23,12 @@ public class Main {
             return true;
         }
         if (a<ans){
-            System.out.println("Загаданное число больше введенного. Осталось попыток " + i + " .");
+            if (i>0) System.out.println("Загаданное число больше введенного. Осталось попыток " + i + " .");
+            else System.out.println("Вы проиграли. Загаданное число " + ans + " .");
             return false;
         }
-        System.out.println("Загаданное число меньше введенного. Осталось попыток " + i + " .");
+        if (i>0) System.out.println("Загаданное число меньше введенного. Осталось попыток " + i + " .");
+        else System.out.println("Вы проиграли. Загаданное число " + ans + " .");
         return false;
     }
 }

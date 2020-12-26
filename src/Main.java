@@ -3,10 +3,11 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        taskOne();
+    //    taskOne();
+        taskTwo();
     }
     static void taskOne (){
-        int ans = (int) (Math.random()*9);
+        int ans = (int) (Math.random()*10);
         boolean end;
         System.out.println("Попробуйте угадать число от 0 до 9");
         for (int i=2; i>=0; i--) {
@@ -17,6 +18,7 @@ public class Main {
     }
     static boolean check (int i, int ans){
         Scanner sc = new Scanner(System.in);
+        sc.close();
         int a = sc.nextInt();
         if (a==ans){
             System.out.println("Вы угадали!");
@@ -30,5 +32,41 @@ public class Main {
         if (i>0) System.out.println("Загаданное число меньше введенного. Осталось попыток " + i + " .");
         else System.out.println("Вы проиграли. Загаданное число " + ans + " .");
         return false;
+
+
     }
+    static void taskTwo () {
+        String [] words = new String[] {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot", "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
+        int ansNum = (int) (Math.random()*25);
+        String ans = words[ansNum];
+        checkStr(ans);
+    }
+    static void checkStr (String ans) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Попробуйте угадать слово");
+        String outStr = new String();
+        for (int i=0; i<ans.length(); i++) {
+            String inSt = sc.next();
+            boolean end = false;
+            for (int j=0; j<ans.length(); j++){
+                char a = ans.charAt(j);
+                char b = inSt.charAt(j);
+                if (b!=a) {
+                    outStr = outStr + ans.charAt(i);
+                    System.out.printf("Вы не угадали. Подсказка : %.15s%n", outStr + "###############" );
+                    end= false;
+                    break;
+                }
+                if (j==(ans.length()-1) && ans.length() == inSt.length()){
+                    end=true;
+                    System.out.println("Вы угадали!!");
+                }
+            }
+            if (end) break;
+        }
+
+
+    }
+
+
 }

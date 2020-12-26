@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-    //    taskOne();
+        taskOne();
         taskTwo();
     }
     static void taskOne (){
@@ -37,7 +37,7 @@ public class Main {
     }
     static void taskTwo () {
         String [] words = new String[] {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot", "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
-        int ansNum = (int) (Math.random()*25);
+        int ansNum = (int) (Math.random()*3);
         String ans = words[ansNum];
         checkStr(ans);
     }
@@ -47,17 +47,21 @@ public class Main {
         String outStr = new String();
         for (int i=0; i<ans.length(); i++) {
             String inSt = sc.next();
+            inSt = inSt.toLowerCase();
             boolean end = false;
             for (int j=0; j<ans.length(); j++){
                 char a = ans.charAt(j);
                 char b = inSt.charAt(j);
-                if (b!=a) {
+                    if (b!=a || ans.length()!=inSt.length()) {
                     outStr = outStr + ans.charAt(i);
-                    System.out.printf("Вы не угадали. Подсказка : %.15s%n", outStr + "###############" );
+                    if (ans.equals(outStr)) {
+                        end = true;
+                        System.out.println("Вы не угадали. Загаданное слово " + outStr);
+                        break;
+                    } else System.out.printf("Вы не угадали. Подсказка : %.15s%n", outStr + "###############" );
                     end= false;
                     break;
-                }
-                if (j==(ans.length()-1) && ans.length() == inSt.length()){
+                } else if (j==(ans.length()-1) && ans.length() == inSt.length() && a==b){
                     end=true;
                     System.out.println("Вы угадали!!");
                 }
